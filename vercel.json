@@ -1,0 +1,50 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/user-app/package.json",
+      "use": "@vercel/next",
+      "config": {
+        "distDir": ".next"
+      }
+    },
+    {
+      "src": "apps/admin-portal/package.json", 
+      "use": "@vercel/next",
+      "config": {
+        "distDir": ".next"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/admin(.*)",
+      "dest": "apps/admin-portal$1"
+    },
+    {
+      "src": "/api/mocks/(.*)",
+      "dest": "api/mocks/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "apps/user-app/$1"
+    }
+  ],
+  "functions": {
+    "apps/user-app/pages/api/**/*.js": {
+      "maxDuration": 10
+    },
+    "apps/admin-portal/pages/api/**/*.js": {
+      "maxDuration": 10
+    },
+    "api/mocks/**/*.js": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/admin/:path*",
+      "destination": "https://eventza-admin.vercel.app/:path*"
+    }
+  ]
+}

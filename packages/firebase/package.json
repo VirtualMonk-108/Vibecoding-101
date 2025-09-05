@@ -1,0 +1,22 @@
+{
+  "name": "@eventza/firebase",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src/",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "firebase": "^10.7.1",
+    "@eventza/shared": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.4",
+    "eslint": "^8.56.0"
+  }
+}
